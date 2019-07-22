@@ -32,25 +32,43 @@ This data set contains building permit information.  The City of Charlottesville
   * Perform data pre-processing, data cleaning, outlier removal, etc to sanitize your data, if necessary
   * Save your data in a .csv file (or other format as appropriate for your data set and project scenario)
   * Read in data to your program from the .csv file
-   
-- DATAFRAME & CALCULATIONS
-   o (Optional - do as appropriate) Process the data or perform any calculations or statistics on it before storing the data into a data frame (see next step)
-   o Save the data into one or more data frame data structure (or other structure as appropriate) (review lecture notes/examples)
-- QUERY
-   o Once your data is stored query your data to reveal interesting/useful information based on your project scenario
-   o Query your data using at least 4 different queries
-   o Capture the results of the queries appropriately (either write results to a file, or store into another data structure, or do something else with the results as appropriate based on your project scenario)
-- RESULTS
-   o (Do as appropriate) Process the results, or submit additional queries to the obtained results (if results were saved to a file or another data structure)
-   o Display final results in a presentable way (use tables and/or appropriate visualizations)
-- TESTING
-   o Perform adequate testing (TDD and/or Unit testing)
-   o Submit this in a separate .py file
-- POWERPOINT PRESENTATION
-- WRITE-UP
-   o INTRODUCTION: describe your project scenario. Starting out, what did you hope to accomplish/learn?
-   o THE DATA: Describe your data set and its significance. Where did you obtain this data set from? Why did you choose the data set that you did? Indicate if you carried out any pre-processing/data cleaning/outlier removal, etc… to sanitize your data
-   o BEYOND THE ORIGINAL SPECIFICATIONS: highlight clearly what things you did that went beyond the original specifications. That is, discuss what you implemented that would count towards the extra-credit portion of this project (see section below.)
-   o RESULTS: Display and discuss the results. Describe what you have learned and mention the relevance/significance of the results you have obtained. Be sure to use appropriate visualizations to display your results.
-   o TESTING: Describe what testing you did. Describe the Unit tests that you wrote. Show a sample run of one or two of your tests (screen caps or copy-and-paste is fine)
-   o CONCLUSIONS: Summarize your findings, explain how these results could be used by others (if applicable), describe ways you could improve your program or ways you might like to expand the functionality of your program if given more time
+* DATAFRAME & CALCULATIONS
+  * (Optional - do as appropriate) Process the data or perform any calculations or statistics on it before storing the data into a data frame (see next step)
+  * Save the data into one or more data frame data structure (or other structure as appropriate) (review lecture notes/examples)
+* QUERY
+  * Once your data is stored query your data to reveal interesting/useful information based on your project scenario
+  * Query your data using at least 4 different queries
+  * Capture the results of the queries appropriately (either write results to a file, or store into another data structure, or do something else with the results as appropriate based on your project scenario)
+* RESULTS
+  * (Do as appropriate) Process the results, or submit additional queries to the obtained results (if results were saved to a file or another data structure)
+  * Display final results in a presentable way (use tables and/or appropriate visualizations)
+* TESTING
+  * Perform adequate testing (TDD and/or Unit testing)
+  * Submit this in a separate .py file
+* CODE CONSOLIDATION
+  * Ensure code works smoothly
+  * Ensure code is properly commented
+* POWERPOINT PRESENTATION
+* WRITE-UP
+
+# Write-up Details
+* INTRODUCTION:
+  * describe your project scenario
+  * Starting out, what did you hope to accomplish/learn?
+* THE DATA: 
+  * Describe your data set and its significance. 
+  * Where did you obtain this data set from? 
+  * Why did you choose the data set that you did? 
+  * Indicate if you carried out any pre-processing/data cleaning/outlier removal, etc… to sanitize your data
+* BEYOND THE ORIGINAL SPECIFICATIONS:
+  * Highlight clearly what things you did that went beyond the original specifications. That is, discuss what you implemented that would count towards the extra-credit portion of this project (see section below.)
+* RESULTS: 
+  * Display and discuss the results. 
+  * Describe what you have learned and mention the relevance/significance of the results you have obtained. 
+  * Be sure to use appropriate visualizations to display your results.
+* TESTING: 
+  * Describe what testing you did. 
+  * Describe the Unit tests that you wrote. 
+  * Show a sample run of one or two of your tests (screen caps or copy-and-paste is fine)
+* CONCLUSIONS: 
+  * Summarize your findings, explain how these results could be used by others (if applicable), describe ways you could improve your program or ways you might like to expand the functionality of your program if given more time
