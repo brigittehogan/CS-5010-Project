@@ -1,25 +1,44 @@
 # CS-5010-Project
-Charlottesville Real Estate
+Wine!
 
 ## Links
-Dataset Website: https://opendata.charlottesville.org
-* Real Estate (base data) https://opendata.charlottesville.org/datasets/real-estate-base-data
-* Real Estate (sales) https://opendata.charlottesville.org/datasets/real-estate-sales
+* UCI Machine Learning Datasets: https://archive.ics.uci.edu/ml/datasets.php
+* Wine Quality: https://archive.ics.uci.edu/ml/datasets/Wine+Quality
+  * Data Folder: https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/
+  * Data Description
 
 ## Data
-* Real Estate - base data (15,558 Records):<p>
-This data set includes information pertaining to the transfer (sales) history for parcels. The "ParcelNumber" field can be joined to the "ParcelNumber" field in the "Parcel Area Details" data set for mapping purposes (current parcels only).This dataset is updated on a daily basis and reflects the Real Estate system as of the previous business day. The assessment values are done yearly and reassessment notices go out at the end of January.</p>
+* Wine Quality (4,898 Records):<p>
+The two datasets are related to red and white variants of the Portuguese "Vinho Verde" wine. For more details, consult: [Web Link] or the reference [Cortez et al., 2009]. Due to privacy and logistic issues, only physicochemical (inputs) and sensory (the output) variables are available (e.g. there is no data about grape types, wine brand, wine selling price, etc.).
 
-* Real Estate - sales (54,347 Records):<p>
-Real Estate Information - Parcel Level Data.  Only active parcels are included in this data set.  The "ParcelNumber" field can be joined to the "ParcelNumber" field in the "Parcel Area Details" data set for mapping purposes. Please refer to this Data Guide for details on how to access and join Real Estate data</p>
+These datasets can be viewed as classification or regression tasks. The classes are ordered and not balanced (e.g. there are many more normal wines than excellent or poor ones). Outlier detection algorithms could be used to detect the few excellent or poor wines. Also, we are not sure if all input variables are relevant. So it could be interesting to test feature selection methods.</p>
 
-Related Data
-* Master Address Table (24,064 Records): https://opendata.charlottesville.org/datasets/master-address-table<p>
-This table is intended to provide municipalities, residences, businesses, and application developers with a comprehensive set of standardized addresses for the City of Charlottesville.</p>
-* Special User Permit Area (186 Records): https://opendata.charlottesville.org/datasets/special-use-permit-area<p>
-A special use permit allows a landowner to obtain a tract of land for a use that does not fall directly under the permitted usage for that specifically zoned area. In most areas, the community is separated into different zones determined by the community’s zoning commission. These zones are then given a specific set of “by-right” permitted uses. This means that any land within that zone can be used for the permitted usage only, by right of the owner. In addition to the regular usages, under the local zoning regulations, each zone is usually given a “special uses” section allowing for uses that are just outside the intended uses for that zone.</p>
-* Building Permits (26,961 Records): https://opendata.charlottesville.org/datasets/building-permits<p>
-This data set contains building permit information.  The City of Charlottesville requires a permit prior to the commencement of any construction, alteration, movement, enlargement, replacement, demolition or change the use or occupancy of a building or structure. The data is maintained daily and updates will display the next business day.</p>
+* Attribute Informaion (12 Attributes):
+  * Input variables (based on physicochemical tests): 
+     1 - fixed acidity 
+     2 - volatile acidity 
+     3 - citric acid 
+     4 - residual sugar 
+     5 - chlorides 
+     6 - free sulfur dioxide 
+     7 - total sulfur dioxide 
+     8 - density 
+     9 - pH 
+     10 - sulphates 
+     11 - alcohol 
+   * Output variable (based on sensory data): 
+     12 - quality (score between 0 and 10)
+     
+* Files
+  * winequality-red.csv - red wine preference samples
+  * winequality-white.csv - white wine preference samples
+  
+* References
+   * Source: Paulo Cortez, University of Minho, Guimarães, Portugal, http://www3.dsi.uminho.pt/pcortez 
+   * A. Cerdeira, F. Almeida, T. Matos and J. Reis, Viticulture Commission of the Vinho Verde Region(CVRVV), Porto, Portugal 
+    @2009
+   * Paper: P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553, 2009. https://www.sciencedirect.com/science/article/pii/S0167923609001377?via%3Dihub
+   * Details on vino verde http://www.vinhoverde.pt/en/
 
 ## Major Tasks
 * PRE-PROCESSING, SAVE/READ CSV
