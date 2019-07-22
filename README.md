@@ -7,11 +7,11 @@ Dataset Website: https://opendata.charlottesville.org
 * Real Estate (sales) https://opendata.charlottesville.org/datasets/real-estate-sales
 
 ## Data
-* Real Estate - base data (15,558 Records): 
-<p>This data set includes information pertaining to the transfer (sales) history for parcels. The "ParcelNumber" field can be joined to the "ParcelNumber" field in the "Parcel Area Details" data set for mapping purposes (current parcels only).This dataset is updated on a daily basis and reflects the Real Estate system as of the previous business day. The assessment values are done yearly and reassessment notices go out at the end of January.</p>
+* <p>Real Estate - base data (15,558 Records): 
+This data set includes information pertaining to the transfer (sales) history for parcels. The "ParcelNumber" field can be joined to the "ParcelNumber" field in the "Parcel Area Details" data set for mapping purposes (current parcels only).This dataset is updated on a daily basis and reflects the Real Estate system as of the previous business day. The assessment values are done yearly and reassessment notices go out at the end of January.</p>
 
-* Real Estate - sales (54,347 Records):
-Real Estate Information - Parcel Level Data.  Only active parcels are included in this data set.  The "ParcelNumber" field can be joined to the "ParcelNumber" field in the "Parcel Area Details" data set for mapping purposes. Please refer to this Data Guide for details on how to access and join Real Estate data
+* Real Estate - sales (54,347 Records):<p>
+Real Estate Information - Parcel Level Data.  Only active parcels are included in this data set.  The "ParcelNumber" field can be joined to the "ParcelNumber" field in the "Parcel Area Details" data set for mapping purposes. Please refer to this Data Guide for details on how to access and join Real Estate data</p>
 
 Related Data
 * Master Address Table (24,064 Records): https://opendata.charlottesville.org/datasets/master-address-table
