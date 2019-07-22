@@ -29,6 +29,7 @@ This data set contains building permit information.  The City of Charlottesville
 
 # Major Tasks
 - PRE-PROCESSING, SAVE/READ CSV
+
 -- Perform data pre-processing, data cleaning, outlier removal, etc to sanitize your data, if necessary
 -- Save your data in a .csv file (or other format as appropriate for your data set and project scenario)
 -- Read in data to your program from the .csv file
