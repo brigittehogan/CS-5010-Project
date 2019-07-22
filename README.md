@@ -17,7 +17,6 @@ Real Estate Information - Parcel Level Data.  Only active parcels are included i
 
 Related Data
 - Master Address Table (24,064 Records): https://opendata.charlottesville.org/datasets/master-address-table
-
 This table is intended to provide municipalities, residences, businesses, and application developers with a comprehensive set of standardized addresses for the City of Charlottesville.
 
 - Special User Permit Area (186 Records): https://opendata.charlottesville.org/datasets/special-use-permit-area
@@ -31,8 +30,9 @@ This data set contains building permit information.  The City of Charlottesville
 # Major Tasks
 - PRE-PROCESSING, SAVE/READ CSV
 -- Perform data pre-processing, data cleaning, outlier removal, etc to sanitize your data, if necessary
-   o Save your data in a .csv file (or other format as appropriate for your data set and project scenario)
-   o Read in data to your program from the .csv file
+-- Save your data in a .csv file (or other format as appropriate for your data set and project scenario)
+-- Read in data to your program from the .csv file
+   
 - DATAFRAME & CALCULATIONS
    o (Optional - do as appropriate) Process the data or perform any calculations or statistics on it before storing the data into a data frame (see next step)
    o Save the data into one or more data frame data structure (or other structure as appropriate) (review lecture notes/examples)
