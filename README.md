@@ -14,23 +14,23 @@ These datasets can be viewed as classification or regression tasks. The classes 
 
 * Attribute Informaion (12 Attributes): <br>
   * Input variables (based on physicochemical tests): <br>
-     1 - fixed acidity 
-     2 - volatile acidity 
-     3 - citric acid 
-     4 - residual sugar 
-     5 - chlorides 
-     6 - free sulfur dioxide 
-     7 - total sulfur dioxide 
-     8 - density 
-     9 - pH 
-     10 - sulphates 
-     11 - alcohol 
+     1 - fixed acidity <br>
+     2 - volatile acidity <br>
+     3 - citric acid <br>
+     4 - residual sugar <br>
+     5 - chlorides <br>
+     6 - free sulfur dioxide <br>
+     7 - total sulfur dioxide <br>
+     8 - density <br>
+     9 - pH <br>
+     10 - sulphates <br>
+     11 - alcohol <br>
    * Output variable (based on sensory data): <br>
-     12 - quality (score between 0 and 10)
+     12 - quality (score between 0 and 10) <br>
      
 * Files
-  * winequality-red.csv - red wine preference samples
-  * winequality-white.csv - white wine preference samples
+  * winequality-red.csv:   red wine preference samples
+  * winequality-white.csv: white wine preference samples
   
 * References
    * Source: Paulo Cortez, University of Minho, Guimarães, Portugal, http://www3.dsi.uminho.pt/pcortez 
