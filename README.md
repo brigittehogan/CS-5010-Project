@@ -3,14 +3,14 @@ Wine!
 
 ## Links
 * UCI Machine Learning Datasets: https://archive.ics.uci.edu/ml/datasets.php
-* Wine Quality: https://archive.ics.uci.edu/ml/datasets/Wine+Quality
-  * Data Folder: https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/
-  * Data Description: wine.names
+  * Wine Quality: https://archive.ics.uci.edu/ml/datasets/Wine+Quality
+    * Data Folder: https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/
+    * Data Description: wine.names (open with text editor)
+* Google Docs: https://docs.google.com/document/d/1QCvCK3M7F5tJ4ys2vx2xFWK4fc2DtQNncZCV9hXtfxc/edit?ts=5d35e486
 
 ## Data
 * ### Wine Quality (4,898 Records):<p>
 The two datasets are related to red and white variants of the Portuguese "Vinho Verde" wine. Due to privacy and logistic issues, only physicochemical (inputs) and sensory (the output) variables are available (e.g. there is no data about grape types, wine brand, wine selling price, etc.). <br>
- <br>
 These datasets can be viewed as classification or regression tasks. The classes are ordered and not balanced (e.g. there are many more normal wines than excellent or poor ones). Outlier detection algorithms could be used to detect the few excellent or poor wines. Also, we are not sure if all input variables are relevant. So it could be interesting to test feature selection methods.</p>
 
 * ### Attribute Informaion (12 Attributes): <br>
