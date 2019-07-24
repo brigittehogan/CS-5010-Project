@@ -5,14 +5,14 @@ Wine!
 * UCI Machine Learning Datasets: https://archive.ics.uci.edu/ml/datasets.php
 * Wine Quality: https://archive.ics.uci.edu/ml/datasets/Wine+Quality
   * Data Folder: https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/
-  * Data Description
+  * Data Description: wine.names
 
 ## Data
-* Wine Quality (4,898 Records):<p>
-The two datasets are related to red and white variants of the Portuguese "Vinho Verde" wine. For more details, consult: [Web Link] or the reference [Cortez et al., 2009]. Due to privacy and logistic issues, only physicochemical (inputs) and sensory (the output) variables are available (e.g. there is no data about grape types, wine brand, wine selling price, etc.).
+* ### Wine Quality (4,898 Records):<p>
+The two datasets are related to red and white variants of the Portuguese "Vinho Verde" wine. Due to privacy and logistic issues, only physicochemical (inputs) and sensory (the output) variables are available (e.g. there is no data about grape types, wine brand, wine selling price, etc.). <br>
 These datasets can be viewed as classification or regression tasks. The classes are ordered and not balanced (e.g. there are many more normal wines than excellent or poor ones). Outlier detection algorithms could be used to detect the few excellent or poor wines. Also, we are not sure if all input variables are relevant. So it could be interesting to test feature selection methods.</p>
 
-* Attribute Informaion (12 Attributes): <br>
+* ### Attribute Informaion (12 Attributes): <br>
   * Input variables (based on physicochemical tests): <br>
      1 - fixed acidity <br>
      2 - volatile acidity <br>
@@ -28,16 +28,18 @@ These datasets can be viewed as classification or regression tasks. The classes 
    * Output variable (based on sensory data): <br>
      12 - quality (score between 0 and 10) <br>
      
-* Files
-  * winequality-red.csv:   red wine preference samples
-  * winequality-white.csv: white wine preference samples
+* ### Files
+  * winequality-red.csv:   red wine preference samples (1599 observations)
+  * winequality-white.csv: white wine preference samples (4898 observations)
   
-* References
+* ### References
+   * Details on vino verde http://www.vinhoverde.pt/en/
    * Source: Paulo Cortez, University of Minho, Guimarães, Portugal, http://www3.dsi.uminho.pt/pcortez 
    * A. Cerdeira, F. Almeida, T. Matos and J. Reis, Viticulture Commission of the Vinho Verde Region(CVRVV), Porto, Portugal 
     @2009
-   * Paper: P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553, 2009. https://www.sciencedirect.com/science/article/pii/S0167923609001377?via%3Dihub
-   * Details on vino verde http://www.vinhoverde.pt/en/
+   * Paper: P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553, 2009. https://www.sciencedirect.com/science/article/pii/S0167923609001377?via%3Dihub <br>
+   In the above reference, two datasets were created, using red and white wine samples. The inputs include objective tests (e.g. PH values) and the output is based on sensory data (median of at least 3 evaluations made by wine experts). Each expert graded the wine quality between 0 (very bad) and 10 (very excellent). Several data mining methods were applied to model these datasets under a regression approach. The support vector machine model achieved the best results. Several metrics were computed: MAD, confusion matrix for a fixed error tolerance (T), etc. Also, we plot the relative importances of the input variables (as measured by a sensitivity analysis procedure).
+
 
 ## Major Tasks
 * PRE-PROCESSING, SAVE/READ CSV
