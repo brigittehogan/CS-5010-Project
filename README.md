@@ -43,7 +43,7 @@ These datasets can be viewed as classification or regression tasks. The classes 
 
 
 ## Major Tasks
-* PRE-PROCESSING, SAVE/READ CSV
+* PRE-PROCESSING, SAVE/READ CSV (Melissa)
   * Perform data pre-processing, data cleaning, outlier removal, etc to sanitize your data, if necessary
   * Save your data in a .csv file (or other format as appropriate for your data set and project scenario)
   * Read in data to your program from the .csv file
