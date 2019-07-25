@@ -1,6 +1,11 @@
 # CS-5010-Project
 Wine!
 
+Brigitte - visualization (boxplots?)
+Melissa - outliers, proper data types for columns, classes
+Sherri - research on wine
+
+
 ## Links
 * UCI Machine Learning Datasets: https://archive.ics.uci.edu/ml/datasets.php
   * Wine Quality: https://archive.ics.uci.edu/ml/datasets/Wine+Quality
