@@ -13,6 +13,8 @@ Sherri - research on wine
     * Data Description: wine.names (open with text editor)
 * Google Docs: https://docs.google.com/document/d/1QCvCK3M7F5tJ4ys2vx2xFWK4fc2DtQNncZCV9hXtfxc/edit?ts=5d35e486
 
+
+
 ## Data
 * ### Wine Quality (4,898 Records):<p>
 The two datasets are related to red and white variants of the Portuguese "Vinho Verde" wine. Due to privacy and logistic issues, only physicochemical (inputs) and sensory (the output) variables are available (e.g. there is no data about grape types, wine brand, wine selling price, etc.). <br>
