@@ -105,4 +105,17 @@ dfw.plot(kind='scatter',x='alcohol',y='quality',color='darkblue')
 plt.show()
 
 
+#############################################################################
+print('====================================================================')
+
+# first run ResidualSugar.py
+temp = ResidualSugar(dfr, 'residual sugar') # assigning to temp also makes changes to dfr
+temp.convert_to_gdm3()
+temp.convert_to_goz()
+temp.convert_to_gserve()
+temp.classify_sugar()
+
+# view results
+dfr.head()
+dfr.loc[dfr['residual sugar'] < 1]
 
