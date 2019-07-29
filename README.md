@@ -12,6 +12,7 @@ Sherri - research on wine
     * Data Folder: https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/
     * Data Description: wine.names (open with text editor)
 * Google Docs: https://docs.google.com/document/d/1QCvCK3M7F5tJ4ys2vx2xFWK4fc2DtQNncZCV9hXtfxc/edit?ts=5d35e486
+* Google Slides: https://docs.google.com/presentation/d/1Ys2TO1wLsTSnXn7fvr6dm39NoV8yl-Gv0CIXdOMaZhw/edit?usp=sharing
 
 
 
