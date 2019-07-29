@@ -23,86 +23,143 @@ dfr.head()
 #getting a summary of each column in the data set
 dfr.describe()
 
-
 # scatter plots of y = quality vs each column
-dfr.plot(kind='scatter',x='fixed acidity',y='quality',color='purple')
-plt.show()
+dfr.shape
 
-dfr.plot(kind='scatter',x='volatile acidity',y='quality',color='green')
-plt.show()
+# Checking that each row has the correct Data Type
+dfr.dtypes
 
-dfr.plot(kind='scatter',x='citric acid',y='quality',color='yellow')
-plt.show()
+# # Data Preprocessing with Wine Query Class
+# Create Wine Query Class with a DataFrame as the attribute
 
-dfr.plot(kind='scatter',x='residual sugar',y='quality',color='blue')
-plt.show()
+class WineQuery():
 
-dfr.plot(kind='scatter',x='chlorides',y='quality',color='lightseagreen')
-plt.show()
+    def __init__(self, df): ## creates the class by taking in a data frame as the attribute
+        self.df = df  
+            
+    def count_nulls(self):## counts how many nulls are in each column
+        if self.df.empty == True :
+            return print("This data frame is entirely empty")
+        else:
+            return self.df.isnull().sum()
+       
+    def getmeans_for_att(self, attribute): ## takes in an attribute, groups the data 
+        #frame by that quality, and returns the means of that attribute by quality rating
+        grouped = self.df.groupby(['quality'])[attribute].mean().reset_index(name=
+                                 'mean ' + attribute)
+        return grouped
+    
+    def getmeans_for_q_rating(self, attribute, rating): ## takes in a quality rating, groups the data 
+        #frame by that rating, and returns the means of the other attributes for that quality rating
+        grouped = self.df.groupby(['quality'])[attribute].mean()
+        return grouped.iloc[rating-3]
+    
+    def q_scatter_plot(self, attribute, color = 'blue'): ##takes in an attribute and prints a scatter plot of the quality
+        #rating vs that attribute
+        dfr.plot(kind ='scatter', x = attribute, y = 'quality', color = color,
+                title = 'quality vs '+ attribute)
+        return plt.show()
+    
+    def getrow(self, attribute, command, number): ## takes in an attribute and a boolean function, and returns the row
+        #of samples for which the boolean function is true
+        if command == "greater than":
+            return self.df[self.df[attribute] > number] 
+        elif command == "less than":
+            return self.df[self.df[attribute] < number]
+        elif command == "equal to":
+            return self.df[self.df[attribute] == number]
+        else:
+            print('Please choose "greater than", "less than" or "equal to"')
+         
+    def count_dupes(self):
+        return self.df.duplicated().sum()
+    
+    def new_bound_sulfites(self):
+        self.df['bound sulfur dioxide'] = self.df['total sulfur dioxide'] - self.df['free sulfur dioxide']
+        return self.df['bound sulfur dioxide']
+    
+# Initialize wine1 as a member of the WineQuery class
 
-dfr.plot(kind='scatter',x='free sulfur dioxide',y='quality',color='darkolivegreen')
-plt.show()
+wineq1 = WineQuery(dfr)
 
-dfr.plot(kind='scatter',x='total sulfur dioxide',y='quality',color='lightcoral')
-plt.show()
+# Viewing Data for Outliers using Scatter Plots of Quality vs Attributes 
 
-dfr.plot(kind='scatter',x='density',y='quality',color='skyblue')
-plt.show()
+wineq1.q_scatter_plot('fixed acidity', "red")
+wineq1.q_scatter_plot('volatile acidity', "blue")
+wineq1.q_scatter_plot('citric acid', "green")
+wineq1.q_scatter_plot('residual sugar', "brown")
+wineq1.q_scatter_plot('chlorides', "orange")
+wineq1.q_scatter_plot('free sulfur dioxide', "purple")
+wineq1.q_scatter_plot('total sulfur dioxide', "pink")
+wineq1.q_scatter_plot('density', "olive")
+wineq1.q_scatter_plot('pH', "navy")
+wineq1.q_scatter_plot('sulphates', "yellow")
+wineq1.q_scatter_plot('alcohol', "violet")
 
-dfr.plot(kind='scatter',x='pH',y='quality',color='orangered')
-plt.show()
+# Check Volatile Acidity > 1.4
+wineq1.getrow('volatile acidity', 'greater than', 1.4)
 
-dfr.plot(kind='scatter',x='sulphates',y='quality',color='sienna')
-plt.show()
+# Check Chlorides > 0.6
+wineq1.getrow('chlorides', 'greater than', 0.6)
 
-dfr.plot(kind='scatter',x='alcohol',y='quality',color='darkblue')
-plt.show()
+# Check Total Sulfur Dioxide > 250
+wineq1.getrow('total sulfur dioxide', 'greater than', 250)
 
-#############################################################################
-print('====================================================================')
+# Check Sulphates greater than 1.75
+wineq1.getrow('sulphates', 'greater than', 1.75)
 
-#read csv of white wine dataset using ';' as delimiter
-dfw = pd.read_csv('winequality-white.csv', sep=';')
 
-#view first few rows of white wine data set
-dfw.head()
+# # Sulphite Specific Queries
+# How does the amount of Total Sulfur Dioxide (the amount that is added by the winemaker 
+#plus the amount naturally present in the wine) affect the quality rating of the wine?
 
-#view summaries of each column in the white wine data set
-dfw.describe()
+f_sulf_means = wineq1.getmeans_for_att('total sulfur dioxide')
+type(f_sulf_means)
+print(f_sulf_means)
+f_sulf_means.plot(kind = "bar", title = "Mean Total Sulfur Dioxide by Quality Rating", color = "purple",
+                  x = "quality", y = "mean total sulfur dioxide")
 
-# scatterplots with y = 'quality' vs each column individually
-dfw.plot(kind='scatter',x='fixed acidity',y='quality',color='purple')
-plt.show()
 
-dfw.plot(kind='scatter',x='volatile acidity',y='quality',color='green')
-plt.show()
+# How does the amount of Free Sulfur Dioxide (the amount added by the winemaker) affect the quality rating of the wine?
 
-dfw.plot(kind='scatter',x='citric acid',y='quality',color='yellow')
-plt.show()
+f_sulf_means = wineq1.getmeans_for_att('free sulfur dioxide')
+f_sulf_means.plot(kind = "bar", title = "Mean Free Sulfur Dioxide by Quality Rating", color = "green",
+                  x = "quality", y = "mean free sulfur dioxide")
+                 
+# How does the mean bound sulfur relate to these patterns?  The bound sulfur is Total - Free.
 
-dfw.plot(kind='scatter',x='residual sugar',y='quality',color='blue')
-plt.show()
+dfwb = wineq1.new_bound_sulfites()  ## name new data frame with bound sulfites as an additional column
 
-dfw.plot(kind='scatter',x='chlorides',y='quality',color='lightseagreen')
-plt.show()
+b_sulf_means = wineq1.getmeans_for_att('bound sulfur dioxide')
+b_sulf_means.plot(kind = "bar", title = "Mean Bound Sulfur Dioxide by Quality Rating", color = "aqua",
+                  x = "quality", y = "mean bound sulfur dioxide")
 
-dfw.plot(kind='scatter',x='free sulfur dioxide',y='quality',color='darkolivegreen')
-plt.show()
+# Finding the wines where 'total sulfur dioxide' > 160
+wineq1.getrow("total sulfur dioxide", "greater than", 160)
 
-dfw.plot(kind='scatter',x='total sulfur dioxide',y='quality',color='lightcoral')
-plt.show()
 
-dfw.plot(kind='scatter',x='density',y='quality',color='skyblue')
-plt.show()
+# Finding the wines were 'total sulfur dioxide' < 10
+wineq1.getrow("total sulfur dioxide", "less than", 10)
 
-dfw.plot(kind='scatter',x='pH',y='quality',color='orangered')
-plt.show()
 
-dfw.plot(kind='scatter',x='sulphates',y='quality',color='sienna')
-plt.show()
+# Counting the wines that have 'total sulfur dioxide' < 10
+wineq1.getrow("total sulfur dioxide", "less than", 10).count()
 
-dfw.plot(kind='scatter',x='alcohol',y='quality',color='darkblue')
-plt.show()
+
+# Summary statistics for the reduced data frame where 'total sulfur' < 10.  Data frame named 'dfx'.
+
+dfx = (wineq1.getrow("total sulfur dioxide", "less than", 10))
+wineq3 = WineQuery(dfx)
+dfx.describe()
+
+
+# Rewriting summary statistics for entire data set for comparison
+dfr.describe()
+type(dfr.describe())
+
+# Plotting the mean values for each column for the original and low SO2 data frames
+dfr.describe().loc['mean'].plot(kind = "bar", color = 'blue', title = 'Original(blue) and Lower SO2 (yellow) Data')
+dfx.describe().loc['mean'].plot(kind = 'bar', color = 'yellow')
 
 #################################################################################
 print('=====================================================================')
