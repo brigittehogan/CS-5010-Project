@@ -8,6 +8,8 @@ import csv
 import pandas as pd
 import matplotlib.pyplot as plt
 
+from ResidualSugar import * # reading in ResidualSugar class
+from WineQuery import *     # reading in WineQuery class
 
 #setting display so we can see all columns and rows
 pd.set_option('display.max_columns', None)
@@ -31,7 +33,7 @@ dfr.dtypes
 
 # # Data Preprocessing with Wine Query Class
 # Create Wine Query Class with a DataFrame as the attribute
-
+# ============================================================================================
 class WineQuery():
 
     def __init__(self, df): ## creates the class by taking in a data frame as the attribute
@@ -108,7 +110,7 @@ wineq1.getrow('total sulfur dioxide', 'greater than', 250)
 # Check Sulphates greater than 1.75
 wineq1.getrow('sulphates', 'greater than', 1.75)
 
-
+# ============================================================================================
 # # Sulphite Specific Queries
 # How does the amount of Total Sulfur Dioxide (the amount that is added by the winemaker 
 #plus the amount naturally present in the wine) affect the quality rating of the wine?
@@ -234,19 +236,80 @@ countrows(above6high)
 countrows(above6norm)
 countrows(above6low)
 
-#############################################################################
-print('====================================================================')
+# ============================================================================================
+## Residual Sugar analysis
 
-# first run ResidualSugar.py
-temp = ResidualSugar(dfr, 'residual sugar') # assigning to temp also makes changes to dfr
+# Viewing Data for Outliers using Scatter Plots
+dfr.plot(kind ='scatter', x = 'residual sugar', y = 'quality', color = 'brown',
+                title = '')
+
+# check Residual Sugar > 12
+wineq1 = WineQuery(dfr) # Initialize wine1 as a member of the WineQuery class
+wineq1.getrow('residual sugar', 'greater than', 12)
+
+# Querying Data Set ----------------------------------------------------------
+# initialize temp as member of ResidualSugar class
+# Note: assigning to temp also makes changes to dfr
+temp = ResidualSugar(dfr, 'residual sugar') 
+
 temp.convert_to_gdm3()
-temp.convert_to_goz()
+temp.convert_to_gmL()
 temp.convert_to_gserve()
-temp.classify_sugar()
 
-# view results
+# classify wine sweetness
+temp.classify_sugar(scheme='US')
+temp.classify_sugar(scheme='EU')
+
+# summary stats
 dfr.head()
 dfr.loc[dfr['residual sugar'] < 1]
+len(dfr.loc[dfr['residual sugar']>10])/1599 * 100 #
+len(dfr.loc[dfr['residual sugar']<10])/1599 * 100 # 99.3%
+
+dfr['rs_type_US'].describe()
+dfr['rs_type_EU'].describe()
+
+
+quality_group = dfr.groupby(['quality'])
+quality_group['residual sugar'].describe()
+
+US_type_group = dfr.groupby(['rs_type_US'])
+US_type_group['residual sugar'].describe()
+
+EU_type_group = dfr.groupby(['rs_type_EU'])
+EU_type_group['residual sugar'].describe()
+
+# Summary Plots -------------------------------------------------------------
+
+#histogram of the residual level
+dfr['residual sugar'].plot.hist(grid=False, bins=20, rwidth=0.9,
+                   color='brown', figsize=(6,4))
+plt.title('Histogram of Residual Sugar in Vinho Verde Wines')
+plt.xlabel('Residual Sugar (g/dm3)')
+plt.ylabel('Number of Samples')
+plt.grid(axis='y', alpha=0.75)  
+
+# BoxPlots - attribute on y
+temp.boxplot_quality('residual sugar', ylabel="residual sugar (g/dm3)")
+
+# BoxPlot - quality on y
+bins   = [0, 5, 10, 15, 20]
+labels = ['0 - 4.9', '5.0 - 9.9', '10.0 - 14.5', '15.0+']
+temp.boxplot_attrBin('residual sugar', bins, labels)
+
+# View by group
+sugar_group = dfr.groupby(['residual sugarBin'])
+sugar_group['residual sugar'].describe()
+
+#scatterplot of residual sugar and pH, with quality as the color of the dots
+marker_size=15
+plt.scatter(dfr['residual sugar'], dfr['pH'], c = dfr['quality'])
+cbar = plt.colorbar()
+cbar.set_label("Quality Rating")
+plt.title('')
+plt.xlabel('residual sugar')
+plt.ylabel('pH')
+plt.show()
 
 
 print('============================================================================================================')
