@@ -10,7 +10,7 @@ class ResidualSugar(): # intentionally not subclassing pd.DataFrame for simplici
       self.dataframe = dataframe
       self.colname = colname
       self.units = units
-#      ml_per_serve = 150
+      # ml_per_serve = 150
 
    def __str__(self):  # to-string method
        return self.colname + " is reported as " + str(self.units) + "\n"
@@ -18,7 +18,9 @@ class ResidualSugar(): # intentionally not subclassing pd.DataFrame for simplici
    def convert_to_gmL(self):
        # converts to g/mL
        dfcolumn=self.dataframe[self.colname]
-       if self.units=='g_l' or self.units=='g_dm3': # 1 g/l = 1 g/dm3
+       if self.units=='g_mL': # no change if units already g_mL
+           rs_gmL = dfcolumn 
+       if self.units=='g_l' or self.units=='g_dm3': # divide  by 1000 if g/L or g/dm3
            rs_gmL = dfcolumn / 1000
        self.dataframe['rs_gmL']=rs_gmL
             
