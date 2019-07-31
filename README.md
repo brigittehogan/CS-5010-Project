@@ -1,10 +1,12 @@
 # CS-5010-Project
-Wine!
+Team: We Drink Wine!
 
-Brigitte - visualization (boxplots?)
-Melissa - outliers, proper data types for columns, classes
-Sherri - research on wine
-
+## Files
+|| Name | Main File | Unit Tests |
+|1| Melissa ||| 
+|2| Sherri ||| 
+|3| Jason |||
+|4| Brigitte | query4_sugar.py | ResidualSugarTest.py |
 
 ## Links
 * UCI Machine Learning Datasets: https://archive.ics.uci.edu/ml/datasets.php
