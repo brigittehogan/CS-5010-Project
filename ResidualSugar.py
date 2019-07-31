@@ -61,18 +61,18 @@ class ResidualSugar(): # intentionally not subclassing pd.DataFrame for simplici
        newcol = pd.cut(self.dataframe['rs_gdm3'], bins=bins, labels=labels)
        self.dataframe[newcol_name]=newcol
        
-   def boxplot_quality(self, attribute, ylabel="", figsize=(6,4)):
+   def boxplot_quality(self, attribute, ylabel="", title="", figsize=(6,4)):
        # creates boxplot of wine quality (x) vs attribute (y)
        if ylabel=="":
            ylabel = attribute
        bp = self.dataframe.boxplot(column=attribute, by='quality', grid=False, figsize=figsize)
        bp.set_xlabel("wine quality")
        bp.set_ylabel(ylabel)
-       plt.title("")
+       plt.title(title)
        plt.suptitle("")
        return plt.show()
 
-   def boxplot_attrBin(self, attribute, bins, labels, xlabel="", figsize=(6,4)):
+   def boxplot_attrBin(self, attribute, bins, labels, xlabel="", title="", figsize=(6,4)):
        if xlabel=="":
            xlabel = attribute
        newcol = attribute + 'Bin'
@@ -80,7 +80,7 @@ class ResidualSugar(): # intentionally not subclassing pd.DataFrame for simplici
        bp = self.dataframe.boxplot(column='quality', by=newcol, grid=False, figsize=figsize)
        bp.set_xlabel(xlabel)
        bp.set_ylabel("wine quality")
-       plt.title("")
+       plt.title(title)
        plt.suptitle("")
        return plt.show()
        
