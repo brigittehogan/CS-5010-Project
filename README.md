@@ -7,7 +7,7 @@ Team: We Drink Wine!
 |---|---|---|---|
 |1| Melissa ||| 
 |2| Sherri |Query_2.py|Query_2_test.py| 
-|3| Jason |||
+|3| Jason |query3_project_code.py|query3_unit_testing.py|
 |4| Brigitte | query4_sugar.py | ResidualSugarTest.py |
 ### Google Doc
 * https://docs.google.com/document/d/1QCvCK3M7F5tJ4ys2vx2xFWK4fc2DtQNncZCV9hXtfxc/edit?ts=5d35e486
