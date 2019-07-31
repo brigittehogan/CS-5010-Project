@@ -1,26 +1,19 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Jul 29 19:27:53 2019
-
-@author: Student
+#Sherry Kausch
+#query 2 of CS 5010 Final Project
 """
-
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jul 28 14:40:36 2019
-
-@author: Student
-"""
-
+#importing necessary libraries
 import csv
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import numpy as np
 
 #setting display so we can see all columns and rows
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
+#reading in the dataset from the csv file
 dfr = pd.read_csv('winequality-red.csv', sep=';')
 
 ##################################################################################
@@ -28,7 +21,8 @@ dfr = pd.read_csv('winequality-red.csv', sep=';')
 #preprossing with respect to acidity query
 #renaming varaibale to get rid of spaces
 dfr = dfr.rename(columns = {"fixed acidity": "fixed_acidity", 
-                                  "volatile acidity":"volatile_acidity"}) 
+                                  "volatile acidity":"volatile_acidity",
+                                  "residual sugar":"residual_sugar"}) 
 
 #creating new variable 'total_acidity' that is the sum of fixed and volitile acidity
 dfr['total_acidity'] = dfr['fixed_acidity'] + dfr['volatile_acidity']
@@ -70,7 +64,9 @@ plt.show()
 #creating bins for total acidity
 #assigning total acidity lower than typically found in wines to "low" and those that 
 #are higher than typical to "high" all else to "typical"
-dfr['Acid_level'] = pd.cut(x=dfr['total_acidity'], bins=[0, 4, 8, 100], labels=['low', 'typical', 'high'])
+dfr['Acid_level'] = pd.cut(x=dfr['total_acidity'], bins=[0, 4, 9, 17], labels=['low', 'typical', 'high'])
+dfr['Acid_level'].describe
+dfr['Acid_level'].value_counts()
 
 
 class WineAcidQuery():
@@ -81,21 +77,119 @@ class WineAcidQuery():
         self.var2 = var2
         
 #creating method for getting the mean of all variables after grouping by two variables
-    def groupMeans(self, var1, var2):
-        return self.df.groupby([var1, var2]).mean()
+    def groupMeans(self):
+        return self.df.groupby([self.var1, self.var2]).mean()
 
 #creating method for getting the mean of all variables after grouping by two variables
-    def groupSize(self, var1, var2):
-        return self.df.groupby([var1, var2]).size()
+    def groupSize(self):
+        return self.df.groupby([self.var1, self.var2]).size()
 
 #creating method for getting the mean of all variables after grouping by two variables
-    def groupDescribe(self, var1, var2):
-        return self.df.groupby([var1, var2]).describe()
- 
-
+    def groupDescribe(self):
+        return self.df.groupby([self.var1, self.var2]).describe()
     
+
 wine1 = WineAcidQuery(dfr, 'quality', 'Acid_level')
 #using my methods to get means, group sizes, and description of all wine chemestry variables by quality and acid level
-wine1.groupMeans('quality', 'Acid_level')
-wine1.groupSize('quality', 'Acid_level')
-wine1.groupDescribe('quality', 'Acid_level')
+wine1.groupMeans()
+wine1.groupSize()
+wine1.groupDescribe()
+
+############################################################################
+#creating nested bar plot to show acid level county by quality rating
+n_groups = 6
+typical_count = (5, 38, 445, 400, 94, 9)
+high_count = (5, 15, 236, 238, 105, 9)
+
+
+fig, ax = plt.subplots()
+index = np.arange(n_groups)
+bar_width = 0.35
+opacity = 0.8
+
+rectsl = plt.bar(index, typical_count, bar_width)
+alpha=opacity,
+color='b'
+labes = 'Typical Acidity'
+rects2 = plt.bar(index + bar_width, high_count, bar_width,
+                 alpha = opacity, color = 'g', label = 'High Acidity')
+labes = 'High Acidity'
+plt.xlabel('Quality')
+plt.ylabel('Counts')
+plt.title('Counts of High and Typical Acid Wine by Quality')
+plt.xticks(index + bar_width, ('3', '4', '5', '6', '7', '8'))
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+
+#creating nested bar plot to show mean residual sugar level by acid level and quality rating
+n_groups = 6
+typical_meansug = (3.010000, 2.821053, 2.430787, 2.359750, 2.486702, 2.122222)
+high_meansug = (2.260000, 2.373333, 2.713771, 2.674580 , 2.930000, 3.033333)
+
+fig, ax = plt.subplots()
+index = np.arange(n_groups)
+bar_width = 0.35
+opacity = 0.8
+
+rectsl = plt.bar(index, typical_meansug, bar_width)
+alpha=opacity,
+color='b'
+labes = 'Typical Acidity'
+rects2 = plt.bar(index + bar_width, high_meansug, bar_width,
+                 alpha = opacity, color = 'g', label = 'High Acidity')
+labes = 'High Acidity'
+plt.xlabel('Quality')
+plt.ylabel('Mean Residual Sugar Level')
+plt.title('Residual Sugar of High and Typical Acid Wine by Quality')
+plt.xticks(index + bar_width, ('3', '4', '5', '6', '7', '8'))
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+#########################################################################
+import unittest
+#testing WineQuery Class
+class WineAcidQueryTests(unittest.TestCase): # inherit from unittest.TestCase
+
+    def test_groupMeans(self):
+        #testing groupMeans function by comparing the position 1,1 of the datframe generated by the function to the same position in the 
+        #dataframe generated byusing the groupby funtion with the original dataframe
+        wine2 = WineAcidQuery(dfr, 'quality', 'Acid_level') 
+        a = wine1.groupMeans()
+        b = dfr.groupby(['quality', 'Acid_level']).mean()
+        self.assertEqual(a.iat[1,1], b.iat[1,1])
+        
+    def test_groupMeans(self):
+        #testing groupMeans function by comparing the position in middle of the datframe generated by the function to the same position in the 
+        #dataframe generated byusing the groupby funtion with the original dataframe
+        wine2 = WineAcidQuery(dfr, 'quality', 'Acid_level') 
+        a = wine1.groupMeans()
+        b = dfr.groupby(['quality', 'Acid_level']).mean()
+        self.assertEqual(a.iat[4,7], b.iat[4,7])
+        
+    def test_groupSize(self):
+        #testing groupSize function by comparing item in position 1 with iten in same position from original dataframe
+        wine2 = WineAcidQuery(dfr, 'quality', 'Acid_level') 
+        c = wine2.groupSize()
+        d = dfr.groupby(['quality', 'Acid_level']).size()
+        self.assertEqual(c[1], d[1])
+        
+    def test_groupDescribe_firstpos(self):
+        #testing groupDescribe funtion by comparing item in position 1,1 with same position in dataframe generated by using the original panda function
+        wine2 = WineAcidQuery(dfr, 'quality', 'Acid_level') 
+        e = wine1.groupDescribe()
+        f = dfr.groupby(['quality', 'Acid_level']).describe()
+        self.assertEqual(e.iat[1,1], f.iat[1,1])
+    
+    def test_groupDescribe_middlepos(self):
+        #testing groupDescribe funtion by comparing item in middle position with same position in dataframe generated by using the original panda function
+        wine2 = WineAcidQuery(dfr, 'quality', 'Acid_level') 
+        e = wine1.groupDescribe()
+        f = dfr.groupby(['quality', 'Acid_level']).describe()
+        self.assertEqual(e.iat[3,6], f.iat[3,6])
+        
+if __name__ == '__main__':
+    unittest.main()
+  
