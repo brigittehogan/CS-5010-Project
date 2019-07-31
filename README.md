@@ -3,6 +3,7 @@ Team: We Drink Wine!
 
 ## Files
 || Name | Main File | Unit Tests |
+|---|---|---|---|
 |1| Melissa ||| 
 |2| Sherri ||| 
 |3| Jason |||
