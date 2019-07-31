@@ -19,6 +19,23 @@ Team: We Drink Wine!
   * Wine Quality: https://archive.ics.uci.edu/ml/datasets/Wine+Quality
     * Data Folder: https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/
     * Data Description: wine.names (open with text editor)
+* http://winesofvinhoverde.com/vinho-verde-101/
+* Wine Folly Blog
+    * https://winefolly.com/review/wine-characteristics/
+    * https://winefolly.com/review/sugar-in-wine-chart/
+    * https://winefolly.com/review/what-is-residual-sugar-in-wine/
+    * https://winefolly.com/review/understanding-acidity-in-wine/
+* Wikipedia
+    * https://en.wikipedia.org/wiki/Vinho_Verde
+    * https://en.wikipedia.org/wiki/European_Union_wine_regulations
+    * https://en.wikipedia.org/wiki/Sulfur_dioxide#In_winemaking
+    * https://en.wikipedia.org/wiki/Sweetness_of_wine
+* https://www.extension.iastate.edu/wine/total-sulfur-dioxide-why-it-matters-too
+* https://www.decanter.com/learn/wine-terminology/sulfites-in-wine-friend-or-foe-295931/
+* https://waterhouse.ucdavis.edu/whats-in-wine/fixed-acidity 
+* https://www.winespectator.com/articles/what-do-ph-and-ta-numbers-mean-to-a-wine-5035
+* http://winemakersacademy.com/understanding-wine-acidity/
+    
 
 ## Data
 * ### Wine Quality (4,898 Records):<br>
