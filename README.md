@@ -2,16 +2,16 @@
 Team: We Drink Wine!
 
 ## Files
-# Python Files
+### Python Files
 || Name | Main File | Unit Tests |
 |---|---|---|---|
 |1| Melissa ||| 
 |2| Sherri ||| 
 |3| Jason |||
 |4| Brigitte | query4_sugar.py | ResidualSugarTest.py |
-# Google Doc
+### Google Doc
 * https://docs.google.com/document/d/1QCvCK3M7F5tJ4ys2vx2xFWK4fc2DtQNncZCV9hXtfxc/edit?ts=5d35e486
-# Google Slides
+### Google Slides
 * https://docs.google.com/presentation/d/1Ys2TO1wLsTSnXn7fvr6dm39NoV8yl-Gv0CIXdOMaZhw/edit?usp=sharing
 
 ## Links
