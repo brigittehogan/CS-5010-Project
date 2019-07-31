@@ -1,0 +1,123 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jul 29 09:30:31 2019
+
+@author: melissaphillips
+"""
+
+import unittest
+import pandas as pd
+from pandas.util.testing import assert_frame_equal # <-- for testing dataframes
+from WineData1 import *
+
+
+#create data frame with no empties
+data1 = {'Color':['Yellow', 'Red', 'Blue', 'Green'], 'Count':[1, 2, 3, 4]} 
+df1 = pd.DataFrame(data1) 
+
+#create data frame with an empty value and a 0 value
+data2 = {'Color':['Yellow', 'na', 'Blue', 'Green'], 'Count':[1, 2, 0, 4]} 
+df2 = pd.DataFrame(data2)
+
+#create data frame with only numbers, integers and floats
+data3 = {'Age': [9, 10, 25, 65, 23], 'Shoe Size': [1.5, 2, 7.5, 8, 9]}
+df3 = pd.DataFrame(data3)
+
+#create empty data frame
+df4 = pd.DataFrame()
+
+
+wineq2 = WineQuery(df2)
+
+
+class WineQueryTests(unittest.TestCase): # inherit from unittest.TestCase
+   
+    #test winequery init for all df cases, and what happens frame is empty
+    def test_WineQuery_init_reg_df(self): #testing the init method with a regular data frame with string and
+        #integer values
+        wineq1 = WineQuery(df1)        
+        #Test that data frame can be extracted
+        assert_frame_equal(wineq1.df, df1)
+             
+    def test_WineQuery_init_zero_na_df(self): #testing the init method with a regular data frame with values
+        wineq2 = WineQuery(df2)        
+        #Test that data frame can be extracted
+        assert_frame_equal(wineq2.df, df2)
+    
+    def test_WineQuery_init_float_df(self): #testing the init method with a regular data frame with float values
+        wineq3 = WineQuery(df3)        
+        #Test that data frame can be extracted
+        assert_frame_equal(wineq3.df, df3)  
+               
+    def test_count_nulls_some(self): #testing that this method counts nulls correctly
+        #use df2 data frame with null value
+        wineq2 = WineQuery(df2)
+        pd.testing.assert_series_equal(wineq2.count_nulls(), wineq2.df.isnull().sum())
+        
+    def test_count_nulls_all(self): #testing that this method counts nulls correctly
+        #when given an empty data frame
+        df4 = pd.DataFrame()
+        wineq4 = WineQuery(df4)
+        self.assertEqual(wineq4.count_nulls(), print ("This data frame is entirely empty"))
+      
+    def test_getmeans_for_att(self): ## test to see that the function renders the correct 
+        # data frame result when the attribute is density
+        wineq5 = WineQuery(dfr)
+        dft = wineq5.getmeans_for_att('density')
+        assert_frame_equal(dft, dfr.groupby(['quality'])['density'].mean().reset_index(name=
+                                 'mean ' + 'density'))
+    
+    def test_getrow_greater_than(self): #test getrow with "greater than"
+        wineq5 = WineQuery(dfr)
+        assert_frame_equal(wineq5.getrow("density", "greater than", 0.9), dfr[dfr["density"] > 0.9])
+        
+    def test_getrow_less_than(self): #test getrow with "less than"
+        wineq5 = WineQuery(dfr)
+        assert_frame_equal(wineq5.getrow("density", "less than", 0.2), dfr[dfr["density"] < 0.2])
+        
+    def test_getrow_equal_to(self): #test getrow with "equal to"
+        wineq5 = WineQuery(dfr)
+        assert_frame_equal(wineq5.getrow("density", "equal to", 0.2), dfr[dfr["density"] == 0.2])
+        
+    def test_getrow_wrong_command(self): #test getrow with wrong command
+        wineq5 = WineQuery(dfr)
+        self.assertEqual(wineq5.getrow("density", "about", 5), 
+                         print('Please choose "greater than", "less than" or "equal to"'))
+    
+    def test_count_dupes_2(self): #test that duplicate rows are counted correctly when there are dupes
+        data1 = {'Color':['Yellow', 'Red', 'Blue', 'Green', 'Yellow', 'Red'], 'Count':[1, 2, 3, 4, 1, 2]} 
+        df1 = pd.DataFrame(data1) 
+        wineq1 = WineQuery(df1)
+        self.assertEqual(wineq1.count_dupes(), 2)
+    
+    def test_count_dupes_0(self): #test that duplicate rows are counted correctly when there are no dupes
+        data2 = {'Color':['Yellow', 'na', 'Blue', 'Green'], 'Count':[1, 2, 0, 4]} 
+        df2 = pd.DataFrame(data2)  
+        wineq2 = WineQuery(df2)
+        self.assertEqual(wineq2.count_dupes(), 0)
+        
+    def test_new_bound_sulfites_first(self): #test that the data frame subtraction worked correctly
+        #by extracting the first terms of the two columns in the original dataframe and confirm
+        #that the correct difference was calculated and put into the right column
+        wineq5 = WineQuery(dfr)
+        dfx = wineq5.new_bound_sulfites()
+        self.assertEqual(dfx[0], (wineq5.df.loc[0, 'total sulfur dioxide'] - wineq5.df.loc[0, 'free sulfur dioxide']))
+                   
+    def test_new_bound_sulfites_middle(self): #test that the data frame subtraction worked correctly
+        #by extracting the first terms of the two columns in the original dataframe and confirm
+        #that the correct difference was calculated and put into the right column
+        wineq5 = WineQuery(dfr)
+        dfx = wineq5.new_bound_sulfites()
+        self.assertEqual(dfx[750], (wineq5.df.loc[750, 'total sulfur dioxide'] - wineq5.df.loc[750, 'free sulfur dioxide']))    
+        
+     
+    def test_new_bound_sulfites_near_end(self): #test that the data frame subtraction worked correctly
+        #by extracting the first terms of the two columns in the original dataframe and confirm
+        #that the correct difference was calculated and put into the right column
+        wineq5 = WineQuery(dfr)
+        dfx = wineq5.new_bound_sulfites()
+        self.assertEqual(dfx[1588], (wineq5.df.loc[1588, 'total sulfur dioxide'] - wineq5.df.loc[1588, 'free sulfur dioxide']))  
+        
+if __name__ == '__main__':
+    unittest.main()            
